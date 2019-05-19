@@ -16,7 +16,7 @@ void handleMainCycle();
 status_t printCurNode();
 status_t printPath(); //TODO for Angela
 status_t printContents(); //TODO for Angela
-void printMainMenu(); //TODO for Angela
+void printMainMenu();
 actionID_t getID(); //TODO for Angela
 status_t handleAction(actionID_t action);
 

@@ -6,17 +6,16 @@ typedef enum Status_ { FAIL, SUCCESS } status_t;
 typedef enum ActionID_
 {
 	invalidID,
-	initID,
-	loadID,
-	flushID,
-	createID,
-	deleteID,
-	renameID,
-	openID,
-	closeID,
-	editID,
-	exitID,
-	countID
+	initID = 'i',
+	loadID = 'l',
+	flushID = 'f',
+	createID = 'n',
+	deleteID = 'd',
+	renameID = 'r',
+	openID = 'o',
+	closeID = 'c',
+	editID = 'e',
+	exitID = '^['
 } actionID_t;
 
 typedef struct Node_

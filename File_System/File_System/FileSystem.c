@@ -2,19 +2,19 @@
 
 status_t getFS()
 {
-	char command = '\0';
+	actionID_t action = invalidID;
+	fflush(stdin);
 	do {
 		system("cls");
 		printf("Type how to start:\n");
 		printf("i - create new file system\n");
 		printf("l - load existing file system");
-		fflush(stdin);
-		command = _getch();
-	} while (!strchr("il", command));
-	switch (command)
+		action = _getch();
+	} while (!strchr(FS_MASK, action));
+	switch (action)
 	{
-	case 'i': return initFS(); break;
-	case 'l': return loadFS();
+	case initID: return initFS(); break;
+	case loadID: return loadFS();
 	}
 }
 

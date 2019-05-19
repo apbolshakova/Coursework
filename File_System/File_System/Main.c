@@ -98,7 +98,14 @@ void printMainMenu()
 actionID_t getID()
 {
 	actionID_t action = invalidID;
-	//read from input
+	char* mask = NULL;
+	if (cur->type == 'F') mask = FOLDER_MASK;
+	else if (cur->type == 'T') mask = FILE_MASK;
+	else return action;
+	fflush(stdin);
+	do {
+		action = _getch();
+	} while (!strchr(mask, action));
 	return action;
 }
 
