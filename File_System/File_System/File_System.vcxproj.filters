@@ -27,6 +27,9 @@
     <ClCompile Include="Node.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Path.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h">

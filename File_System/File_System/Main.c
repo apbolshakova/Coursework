@@ -46,7 +46,7 @@ void handleMainCycle()
 
 status_t printCurNode()
 {
-	if (printPath() == FAIL)
+	if (printDir() == FAIL)
 	{
 		printf("ERROR: unable to print path to currect directory.\n");
 		return FAIL;
@@ -59,9 +59,22 @@ status_t printCurNode()
 	return SUCCESS;
 }
 
-status_t printPath()
+status_t printDir()
 {
-	//TODO
+	path_t* path = NULL;
+	if (getPath(&path) == FAIL)
+	{
+		deletePath(&path);
+		printf("ERROR: unable to get path.\n");
+		return FAIL;
+	}
+	if (printPath(path) == FAIL)
+	{
+		deletePath(&path);
+		printf("ERROR: unable to print path.\n");
+		return FAIL;
+	}
+	deletePath(&path);
 	return SUCCESS;
 }
 

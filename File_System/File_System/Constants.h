@@ -3,4 +3,5 @@
 #define FS_MASK "il"
 #define FOLDER_MASK "fndroc\033"
 #define FILE_MASK "fec\033"
+#define LEN 256
 #endif

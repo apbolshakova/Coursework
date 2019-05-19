@@ -28,4 +28,10 @@ typedef struct Node_
 	char* data; //NULL if it's folder
 } node_t;
 
+typedef struct Path_ //list of node pointers from root to cur
+{
+	node_t* node;
+	struct Path_* next;
+} path_t;
+
 #endif

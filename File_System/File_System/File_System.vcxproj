@@ -121,6 +121,7 @@
     <ClCompile Include="FileSystem.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Node.c" />
+    <ClCompile Include="Path.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
