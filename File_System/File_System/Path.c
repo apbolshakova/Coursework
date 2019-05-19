@@ -40,7 +40,9 @@ status_t printPath(path_t* root)
 	path_t* el = root;
 	while (el)
 	{
-		printf("%s/", el->node->name);
+		printf("%s", el->node->name);
+		if (el->node->type == 'F') printf("/");
+		else if (el->node->type == 'T') printf(".txt");
 		el = el->next;
 	}
 	printf("\n");

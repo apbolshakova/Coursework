@@ -16,6 +16,7 @@ void handleMainCycle();
 status_t printCurNode();
 status_t printDir();
 status_t printContents();
+void printText(char* text);
 void printMainMenu();
 actionID_t getID();
 status_t handleAction(actionID_t action);
@@ -23,7 +24,10 @@ status_t handleAction(actionID_t action);
 /*FileSystem.c*/
 status_t getFS();
 status_t initFS();
-status_t loadFS(); //TODO for Angela
+status_t handleLoading();
+char* getFileName();
+status_t loadFS(const char *fileName);
+status_t getNodes(node_t** node, node_t* parent, FILE* file);
 status_t flushFS(); //TODO for Angela
 status_t deleteFS(); //TODO for Sasha
 

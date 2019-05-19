@@ -81,13 +81,25 @@ status_t printDir()
 
 status_t printContents()
 {
+	if (cur->type == 'T') printText(cur->data);
 	for (int i = 0; i < cur->childrenNum; i++)
 	{
-		printf("%s", cur->child[i]->name);
-		if (cur->child[i]->type = 'T') printf(".txt");
+		printf("%i. %s", i, cur->child[i]->name);
+		if (cur->child[i]->type == 'T') printf(".txt");
 		printf("\n");
 	}
+	printf("\n");
 	return SUCCESS;
+}
+
+void printText(char* text)
+{
+	while (*text)
+	{
+		printf("%c", *text);
+		text++;
+	}
+	printf("\n");
 }
 
 void printMainMenu()
