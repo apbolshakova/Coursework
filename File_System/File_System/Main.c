@@ -1,44 +1,78 @@
-#include "Header.h"
+#include "Common.h"
+node_t* root = NULL;
+node_t* cur = NULL;
 
 int main(void)
 {
-	node_t* root = getFileSystem();
-	handleMainCycle(root); //handle main cycle while not exit
-	flushFileSystem(root); //flush
-}
-
-node_t* getFileSystem()
-{
-	unsigned int operationCode = 0;
-	printf("Enter:\n");
-	printf("1 - to create new file system\n");
-	printf("2 - to open existing file system\n");
-	scanf("%c", &operationCode);
-	switch (operationCode)
+	if (getFS() == FAIL)
 	{
-	case 1: return createFileSystem(); break;
-	case 2: return loadFileSystem(); break;
-	default: break;
+		printf("ERROR: unable to get file system.\n");
+		cleanup();
+		return 0;
 	}
+	handleMainCycle();
+	flushFS(); 
+	deleteFS();
+	return 0;
 }
 
-void handleMainCycle(node_t* root)
+void handleMainCycle()
 {
-	node_t* curNode = root; //папка или файл, в котором находимся
-	operation_code_t operationCode = NULL_OPERATION;
+	cur = root;
+	actionID_t action = invalidID;
 	do
 	{
 		system("cls");
-		printPathToNode(curNode);
-		if (curNode->data) printTextFile(curNode);
-		else printFolder(curNode);
-		scanf("%c", &operationCode);
-		switch (operationCode)
-		{
-		//операции: подняться на уровень выше, сохранить текущее дерево в файл
-		  //папка => создать папку/файл, удалить папку/файл, переместить папку/файл
-		  //файл => редактировать текст
-		default: break;
-		}
-	} while (operationCode != EXIT);
+		printInterface();
+		action = getID();
+		if (handleAction(action) == FAIL) printf("\nAction wasn't completed.\n");
+		printf("Press any button to continue.\n");
+		_getch();
+	} while (action != exitID);
+}
+
+status_t printInterface()
+{
+	if (printPath() == FAIL)
+	{
+		print("ERROR: unable to print path to currect directory.\n");
+		return FAIL;
+	}
+	if (printContents() == FAIL)
+	{
+		print("ERROR: unable to print contents of the current directory.\n");
+		return FAIL;
+	}
+	printMainMenu();
+	return SUCCESS;
+}
+
+status_t printPath()
+{
+	//TODO
+	return SUCCESS;
+}
+
+status_t printContents()
+{
+	//TODO
+	return SUCCESS;
+}
+
+void printMainMenu()
+{
+	//TODO
+}
+
+actionID_t getID()
+{
+	actionID_t action = invalidID;
+	//read from input
+	return action;
+}
+
+status_t handleAction(actionID_t action)
+{
+	//TODO
+	return SUCCESS;
 }

@@ -1,21 +1,32 @@
 #ifndef TYPES
 #define TYPES
 
-typedef enum FuncResult_ { FAIL, SUCCESS } func_result_t;
+typedef enum Status_ { FAIL, SUCCESS } status_t;
 
-typedef enum OperationCode_ 
+typedef enum ActionID_
 {
-	NULL_OPERATION = 0,
-	EXIT = 'e'
-} operation_code_t;
+	invalidID,
+	initID,
+	loadID,
+	flushID,
+	createID,
+	deleteID,
+	renameID,
+	openID,
+	closeID,
+	editID,
+	exitID,
+	countID
+} actionID_t;
 
 typedef struct Node_
 {
 	char* name;
+	char type; //F - folder, T - text file
 	node_t* parent;
 	int childrenNum;
 	node_t* child;
-	char* data; //NULL если это папка
+	char* data; //NULL if it's folder
 } node_t;
 
 #endif

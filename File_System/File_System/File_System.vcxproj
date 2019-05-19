@@ -117,12 +117,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="File.c" />
     <ClCompile Include="FileSystem.c" />
+    <ClCompile Include="Folder.c" />
+    <ClCompile Include="Handler.c" />
     <ClCompile Include="Main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
-    <ClInclude Include="Header.h" />
+    <ClInclude Include="Common.h" />
     <ClInclude Include="Types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
