@@ -25,10 +25,14 @@ status_t handleAction(actionID_t action);
 status_t getFS();
 status_t initFS();
 status_t handleLoading();
-char* getFileName();
 status_t loadFS(const char *fileName);
 status_t getNodes(node_t** node, node_t* parent, FILE* file);
-status_t flushFS(); //TODO for Angela
+status_t getDataFromFile(char** storage, FILE* file);
+status_t handleFlushing();
+status_t flushFS(const char *fileName);
+status_t printNodes(node_t* node, FILE* file);
+void fprintText(char* text, FILE* file);
+char* getFileName();
 status_t deleteFS(); //TODO for Sasha
 
 /*Node.c*/

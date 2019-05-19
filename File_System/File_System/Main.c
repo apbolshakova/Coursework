@@ -12,7 +12,7 @@ int main(void)
 		return 0;
 	}
 	handleMainCycle();
-	flushFS(); 
+	handleFlushing();
 	deleteFS();
 	return 0;
 }
@@ -107,7 +107,7 @@ void printMainMenu()
 	printf("Press key depend on what would you like to do:\n");
 	printf("General:\n");
 	printf("f - save current state as file\n");
-	printf("ESC - close program\n");
+	printf("ESC - save file system in file and close program\n");
 
 	if (cur->type == 'F')
 	{
@@ -126,7 +126,7 @@ void printMainMenu()
 	printf("c - close this directory\n");
 }
 
-actionID_t getID() //TODO test
+actionID_t getID()
 {
 	actionID_t action = invalidID;
 	char* mask = NULL;
@@ -146,7 +146,7 @@ status_t handleAction(actionID_t action)
 	printCurNode();
 	switch (action)
 	{
-	case flushID: return flushFS(); break;
+	case flushID: return handleFlushing(); break;
 	case createID: return createNode(); break;
 	case deleteID: return deleteNode(); break;
 	case renameID: return renameNode(); break;

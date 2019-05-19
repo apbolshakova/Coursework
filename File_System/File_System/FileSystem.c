@@ -55,19 +55,6 @@ status_t handleLoading()
 	return SUCCESS;
 }
 
-char* getFileName()
-{
-	char* fileName = (char*)calloc(LEN, sizeof(char));
-	if (!fileName)
-	{
-		printf("ERROR: memory allocation problem.\n");
-		return FAIL;
-	}
-	printf("Enter name of file:\n");
-	scanf_s(LEN_CODE, fileName, LEN);
-	return fileName;
-}
-
 status_t loadFS(const char *fileName)
 {
 	FILE* file;
@@ -163,9 +150,75 @@ status_t getDataFromFile(char** storage, FILE* file)
 	return SUCCESS;
 }
 
-status_t flushFS()
+status_t handleFlushing()
 {
+	char* fileName = getFileName();
+	if (!fileName)
+	{
+		printf("ERROR: unable to get file name");
+		return FAIL;
+	}
+	if (flushFS(fileName) == FAIL)
+	{
+		free(fileName);
+		printf("ERROR: unable to save file system in file.\n");
+		return FAIL;
+	}
+	free(fileName);
 	return SUCCESS;
+}
+
+status_t flushFS(const char *fileName)
+{
+	FILE* file;
+	if (!(file = fopen(fileName, "w")))
+	{
+		printf("ERROR: unable to open file.\n");
+		return FAIL;
+	}
+	if (printNodes(root, file) == FAIL)
+	{
+		printf("ERROR unable to save data in file.\n");
+		return FAIL;
+	}
+	fclose(file);
+	return SUCCESS;
+}
+
+status_t printNodes(node_t* node, FILE* file)
+{
+	if (!node) return FAIL;
+	fprintf(file, "%s %i ", node->name, node->childrenNum);
+	if (node->type == 'T') fprintText(node->data, file);
+	fprintf(file, "\n");
+	for (int i = 0; i < node->childrenNum; i++)
+	{
+		return printNodes(node->child[i], file);
+	}
+	return SUCCESS;
+}
+
+void fprintText(char* text, FILE* file)
+{
+	while (*text)
+	{
+		fprintf(file, "%c", *text);
+		text++;
+	}
+	printf("\n");
+}
+
+char* getFileName()
+{
+	char* fileName = (char*)calloc(LEN, sizeof(char));
+	if (!fileName)
+	{
+		printf("ERROR: memory allocation problem.\n");
+		return FAIL;
+	}
+	printf("Enter name of file:\n");
+	scanf_s(LEN_CODE, fileName, LEN);
+	return fileName;
 }
 
 status_t deleteFS()
