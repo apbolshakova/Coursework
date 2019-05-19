@@ -21,16 +21,10 @@
     <ClCompile Include="Main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Folder.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="File.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Node.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Handler.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

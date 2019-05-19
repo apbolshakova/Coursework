@@ -119,8 +119,6 @@
   <ItemGroup>
     <ClCompile Include="File.c" />
     <ClCompile Include="FileSystem.c" />
-    <ClCompile Include="Folder.c" />
-    <ClCompile Include="Handler.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Node.c" />
   </ItemGroup>

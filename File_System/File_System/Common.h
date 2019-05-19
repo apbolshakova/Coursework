@@ -13,12 +13,12 @@ extern node_t* cur; //folder or file to work with
 
 /*Main.c*/
 void handleMainCycle();
-status_t printInterface();
+status_t printCurNode();
 status_t printPath(); //TODO for Angela
 status_t printContents(); //TODO for Angela
 void printMainMenu(); //TODO for Angela
 actionID_t getID(); //TODO for Angela
-status_t handleAction(actionID_t action); //TODO for Angela
+status_t handleAction(actionID_t action);
 
 /*FileSystem.c*/
 status_t getFS(); //TODO for Angela
@@ -26,16 +26,12 @@ status_t initFS(); //TODO for Angela
 status_t loadFS(); //TODO for Angela
 status_t flushFS(); //TODO for Angela
 
-/*Handler.c*/
-status_t handleOpening(); //TODO for Angela
-status_t handleClosing(); //TODO for Angela
-
 /*Node.c*/
 status_t createNode(); //TODO for Sasha
 status_t deleteNode(); //TODO for Sasha
 status_t renameNode(); //TODO for Sasha
-
-/*Folder.c*/
+status_t openNode();
+status_t closeNode();
 
 /*File.c*/
 status_t editFile(); //TODO for Sasha

@@ -23,7 +23,12 @@ void handleMainCycle()
 	do
 	{
 		system("cls");
-		printInterface();
+		if (printCurNode() == FAIL)
+		{
+			printf("ERROR: file system data is corrupted.\n");
+			break;
+		}
+		printMainMenu();
 		action = getID();
 		if (handleAction(action) == FAIL) printf("\nAction wasn't completed.\n");
 		printf("Press any button to continue.\n");
@@ -31,7 +36,7 @@ void handleMainCycle()
 	} while (action != exitID);
 }
 
-status_t printInterface()
+status_t printCurNode()
 {
 	if (printPath() == FAIL)
 	{
@@ -43,7 +48,6 @@ status_t printInterface()
 		print("ERROR: unable to print contents of the current directory.\n");
 		return FAIL;
 	}
-	printMainMenu();
 	return SUCCESS;
 }
 
@@ -74,6 +78,7 @@ actionID_t getID()
 status_t handleAction(actionID_t action)
 {
 	system("cls");
+	printCurNode();
 	if (!root || !cur)
 	{
 		printf("ERROR: file system is not defined.\n");

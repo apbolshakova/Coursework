@@ -25,7 +25,7 @@ typedef struct Node_
 	char type; //F - folder, T - text file
 	node_t* parent;
 	int childrenNum;
-	node_t* child;
+	node_t** child;
 	char* data; //NULL if it's folder
 } node_t;
 
