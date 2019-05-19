@@ -28,6 +28,11 @@ status_t loadFS()
 	return SUCCESS;
 }
 
+status_t flushFS()
+{
+	return SUCCESS;
+}
+
 //TODO: reuse and cleanup
 /*node_t* createFileSystem()
 {

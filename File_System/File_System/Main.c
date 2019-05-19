@@ -73,6 +73,23 @@ actionID_t getID()
 
 status_t handleAction(actionID_t action)
 {
-	//TODO
-	return SUCCESS;
+	system("cls");
+	if (!root || !cur)
+	{
+		printf("ERROR: file system is not defined.\n");
+		return FAIL;
+	}
+	switch (action)
+	{
+	case flushID: return flushFS(); break;
+	case createID: return createNode(); break;
+	case deleteID: return deleteNode(); break;
+	case renameID: return renameNode(); break;
+	case openID: return handleOpening(); break;
+	case closeID: return handleClosing(); break;
+	case editID: return editFile(); break;
+	case exitID: return SUCCESS;
+	}
+	printf("ERROR: Invalid action.\n");
+	return FAIL;
 }

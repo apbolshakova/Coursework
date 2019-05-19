@@ -122,6 +122,7 @@
     <ClCompile Include="Folder.c" />
     <ClCompile Include="Handler.c" />
     <ClCompile Include="Main.c" />
+    <ClCompile Include="Node.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
