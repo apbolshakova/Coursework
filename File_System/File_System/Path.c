@@ -43,6 +43,7 @@ status_t printPath(path_t* root)
 		printf("%s/", el->node->name);
 		el = el->next;
 	}
+	printf("\n");
 	return SUCCESS;
 }
 

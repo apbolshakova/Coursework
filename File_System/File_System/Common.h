@@ -14,8 +14,8 @@ extern node_t* cur; //folder or file to work with
 /*Main.c*/
 void handleMainCycle();
 status_t printCurNode();
-status_t printDir(); //TODO for Angela
-status_t printContents(); //TODO for Angela
+status_t printDir();
+status_t printContents();
 void printMainMenu();
 actionID_t getID();
 status_t handleAction(actionID_t action);

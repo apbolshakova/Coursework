@@ -74,20 +74,26 @@ status_t printDir()
 		printf("ERROR: unable to print path.\n");
 		return FAIL;
 	}
+	printf("\n");
 	deletePath(&path);
 	return SUCCESS;
 }
 
 status_t printContents()
 {
-	//TODO
+	for (int i = 0; i < cur->childrenNum; i++)
+	{
+		printf("%s", cur->child[i]->name);
+		if (cur->child[i]->type = 'T') printf(".txt");
+		printf("\n");
+	}
 	return SUCCESS;
 }
 
 void printMainMenu()
 {
-	printf("\nPress key depend on what would you like to do:\n");
-	printf("\nGeneral:\n");
+	printf("Press key depend on what would you like to do:\n");
+	printf("General:\n");
 	printf("f - save current state as file\n");
 	printf("ESC - close program\n");
 
