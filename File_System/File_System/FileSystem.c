@@ -16,10 +16,23 @@ status_t getFS()
 	case initID: return initFS(); break;
 	case loadID: return loadFS();
 	}
+	return FAIL;
 }
 
 status_t initFS()
 {
+	root = (node_t*)malloc(sizeof(node_t));
+	if (!root)
+	{
+		printf("ERROR: memory allocation probrem.\n");
+		return FAIL;
+	}
+	root->name = ROOT_NAME;
+	root->type = 'F';
+	root->parent = NULL;
+	root->childrenNum = 0;
+	root->child = NULL;
+	root->data = NULL;
 	return SUCCESS;
 }
 
@@ -38,19 +51,7 @@ status_t deleteFS()
 	return SUCCESS;
 }
 
-//TODO: reuse and cleanup
-/*node_t* createFileSystem()
-{
-	node_t* root = (node_t*)malloc(sizeof(node_t));
-	root->name = ROOT_NAME;
-	root->parent = NULL;
-	root->childrenNum = 0;
-	root->child = NULL;
-	root->data = NULL;
-	return root;
-}
-
-node_t* loadFileSystem()
+/*node_t* loadFileSystem()
 {
 	//очистить экран
 	printf("Enter name of file or press ESC to return: ");

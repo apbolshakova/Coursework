@@ -15,7 +15,7 @@ typedef enum ActionID_
 	openID = 'o',
 	closeID = 'c',
 	editID = 'e',
-	exitID = '^['
+	exitID = '\033'
 } actionID_t;
 
 typedef struct Node_

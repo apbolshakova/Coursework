@@ -23,10 +23,10 @@ status_t renameNode()
 	return SUCCESS;
 }
 
-status_t openNode() //TODO test
+status_t openNode()
 {
 	int childID = getChildID();
-	if (cur->childrenNum <= childID)
+	if (cur->childrenNum <= childID || childID < 0)
 	{
 		printf("ERROR: attempt to open not existing file.\n");
 		return FAIL;
@@ -39,11 +39,11 @@ int getChildID()
 {
 	int childID = 0;
 	printf("Print ID of file which you want to open: ");
-	scanf("%i", childID);
+	scanf("%i", &childID);
 	return childID;
 }
 
-status_t closeNode() //TODO test
+status_t closeNode()
 {
 	if (!cur->parent)
 	{

@@ -74,7 +74,7 @@ status_t printContents()
 void printMainMenu()
 {
 	printf("\nPress key depend on what would you like to do:\n");
-	printf("General:\n");
+	printf("\nGeneral:\n");
 	printf("f - save current state as file\n");
 	printf("ESC - close program\n");
 
@@ -95,7 +95,7 @@ void printMainMenu()
 	printf("c - close this directory\n");
 }
 
-actionID_t getID()
+actionID_t getID() //TODO test
 {
 	actionID_t action = invalidID;
 	char* mask = NULL;
