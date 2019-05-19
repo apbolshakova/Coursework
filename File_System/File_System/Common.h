@@ -21,16 +21,18 @@ actionID_t getID(); //TODO for Angela
 status_t handleAction(actionID_t action);
 
 /*FileSystem.c*/
-status_t getFS(); //TODO for Angela
+status_t getFS();
 status_t initFS(); //TODO for Angela
 status_t loadFS(); //TODO for Angela
 status_t flushFS(); //TODO for Angela
+status_t deleteFS(); //TODO for Sasha
 
 /*Node.c*/
 status_t createNode(); //TODO for Sasha
 status_t deleteNode(); //TODO for Sasha
 status_t renameNode(); //TODO for Sasha
 status_t openNode();
+int getChildID();
 status_t closeNode();
 
 /*File.c*/

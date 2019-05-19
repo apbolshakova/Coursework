@@ -28,11 +28,19 @@ status_t openNode() //TODO test
 	int childID = getChildID();
 	if (cur->childrenNum <= childID)
 	{
-		print("ERROR: attempt to open not existing file.\n");
+		printf("ERROR: attempt to open not existing file.\n");
 		return FAIL;
 	}
 	cur = cur->child[childID];
 	return SUCCESS;
+}
+
+int getChildID()
+{
+	int childID = 0;
+	printf("Print ID of file which you want to open: ");
+	scanf("%i", childID);
+	return childID;
 }
 
 status_t closeNode() //TODO test

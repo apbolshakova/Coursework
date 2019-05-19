@@ -7,7 +7,8 @@ int main(void)
 	if (getFS() == FAIL)
 	{
 		printf("ERROR: unable to get file system.\n");
-		cleanup();
+		deleteFS();
+		_getch();
 		return 0;
 	}
 	handleMainCycle();
@@ -23,9 +24,16 @@ void handleMainCycle()
 	do
 	{
 		system("cls");
+		if (!root || !cur)
+		{
+			printf("ERROR: file system is not defined.\n");
+			_getch();
+			break;
+		}
 		if (printCurNode() == FAIL)
 		{
 			printf("ERROR: file system data is corrupted.\n");
+			_getch();
 			break;
 		}
 		printMainMenu();
@@ -40,12 +48,12 @@ status_t printCurNode()
 {
 	if (printPath() == FAIL)
 	{
-		print("ERROR: unable to print path to currect directory.\n");
+		printf("ERROR: unable to print path to currect directory.\n");
 		return FAIL;
 	}
 	if (printContents() == FAIL)
 	{
-		print("ERROR: unable to print contents of the current directory.\n");
+		printf("ERROR: unable to print contents of the current directory.\n");
 		return FAIL;
 	}
 	return SUCCESS;
@@ -65,7 +73,26 @@ status_t printContents()
 
 void printMainMenu()
 {
-	//TODO
+	printf("\nPress key depend on what would you like to do:\n");
+	printf("General:\n");
+	printf("f - save current state as file\n");
+	printf("ESC - close program\n");
+
+	if (cur->type == 'F')
+	{
+		printf("\nFolder:\n");
+		printf("n - create new file in this folder\n");
+		printf("d - delete file from this folder\n");
+		printf("r - rename file in this folder\n");
+		printf("o - open file from this folder\n");
+
+	}
+	if (cur->type == 'T')
+	{
+		printf("\nFile:\n");
+		printf("e - edit this file\n");
+	}
+	printf("c - close this directory\n");
 }
 
 actionID_t getID()
@@ -79,19 +106,14 @@ status_t handleAction(actionID_t action)
 {
 	system("cls");
 	printCurNode();
-	if (!root || !cur)
-	{
-		printf("ERROR: file system is not defined.\n");
-		return FAIL;
-	}
 	switch (action)
 	{
 	case flushID: return flushFS(); break;
 	case createID: return createNode(); break;
 	case deleteID: return deleteNode(); break;
 	case renameID: return renameNode(); break;
-	case openID: return handleOpening(); break;
-	case closeID: return handleClosing(); break;
+	case openID: return openNode(); break;
+	case closeID: return closeNode(); break;
 	case editID: return editFile(); break;
 	case exitID: return SUCCESS;
 	}
