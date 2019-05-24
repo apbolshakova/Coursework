@@ -55,9 +55,8 @@ status_t editFile()
 			if (iText > 0)
 			{
 				iText--;
-				for (iEchangingName[iChangingName] //÷¸
-					dit = iText; iEdit < curLen - 1; iEdit++)
-				   buf[iEdit] = buf[iEdit + 1]);
+				for (iEdit = iText; iEdit < curLen - 1; iEdit++)
+				   buf[iEdit] = buf[iEdit + 1];
 				 curLen--;
 				 buf[curLen] = '\0';
 			}

@@ -32,7 +32,7 @@ status_t createNode()
 		else
 		{
 			newName = realloc(newName, iNewName+2);
-			scanf_s("%c", newName[iNewName]);
+			scanf_s("%c", newName[iNewName], 1);
 			iNewName++;
 			newName[iNewName] = '\0';
 		}
@@ -52,6 +52,12 @@ status_t createNode()
 	newNode->data = NULL;
 
 	cur->childrenNum++;
+	cur->child = (node_t*)realloc(cur->child, sizeof(node_t)*cur->childrenNum);
+	if (!cur->child)
+	{
+		printf("ERROR: memory allocation problem.\n");
+		return FAIL;
+	}
 	cur->child[cur->childrenNum - 1] = newNode;
 	return SUCCESS;
 }
@@ -64,7 +70,7 @@ void deleteChildrenRecur(node_t* curRecur)
 		for (iChild = 0; iChild < curRecur->childrenNum; iChild++)
 		{
 			if (curRecur->child[iChild])
-				delete_children_recur(curRecur->child[iChild]);
+				deleteChildrenRecur(curRecur->child[iChild]);
 			free(curRecur->child[iChild]);
 		}
 	}
