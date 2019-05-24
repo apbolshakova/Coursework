@@ -22,7 +22,7 @@ status_t createNode()
 	}
 	int iNewName = 0;
 	printf("Please enter name for new item:\n");
-	while (!strchr(NAME_MASK, newName[iNewName])
+	while (!strchr(NAME_MASK, newName[iNewName]))
 	{
 		if (iNewName < LEN_NAME)
 		{
@@ -44,8 +44,8 @@ status_t createNode()
 		printf("ERROR: memory allocation problem.\n");
 		return FAIL;
 	}
-	newNode->name = new_name;
-	newNode->type = enter_type;
+	newNode->name = newName;
+	newNode->type = enterType;
 	newNode->parent = cur;
 	newNode->childrenNum = 0;
 	newNode->child = NULL;
@@ -107,7 +107,7 @@ status_t renameNode()
 	}
 	int iChangingName = 0;
 	printf("Please enter which new name you want to give this item:\n");
-	while (!strchr(NAME_MASK, changingName[iChangingName])
+	while (!strchr(NAME_MASK, changingName[iChangingName]))
 	{
 		if (iChangingName < LEN_NAME)
 		{

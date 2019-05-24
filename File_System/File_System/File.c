@@ -55,7 +55,7 @@ status_t editFile()
 			if (iText > 0)
 			{
 				iText--;
-				for (iEchangingName[iChangingName]
+				for (iEchangingName[iChangingName] //÷¸
 					dit = iText; iEdit < curLen - 1; iEdit++)
 				   buf[iEdit] = buf[iEdit + 1]);
 				 curLen--;
@@ -74,7 +74,7 @@ status_t editFile()
 			break;
 		}		
 
-		system(cls);
+		system("cls");
 		for (iEdit = 0; iEdit < curLen; iEdit++)
 			printf(buf[iEdit]);
 		printf("The cursor is before a symbol with index %i", iText);
