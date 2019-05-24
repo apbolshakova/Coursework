@@ -25,7 +25,7 @@ status_t initFS()
 	root = (node_t*)malloc(sizeof(node_t));
 	if (!root)
 	{
-		printf("ERROR: memory allocation probrem.\n");
+		printf("ERROR: memory allocation problem.\n");
 		return FAIL;
 	}
 	root->name = ROOT_NAME;

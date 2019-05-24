@@ -3,6 +3,13 @@
 
 typedef enum Status_ { FAIL, SUCCESS } status_t;
 
+typedef enum TypeOfCreate_ 
+{
+	invalidTC,
+	folderTC='F', 
+	textFileTC='T'
+} create_type;
+
 typedef enum ActionID_
 {
 	invalidID,
