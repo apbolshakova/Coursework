@@ -2,31 +2,27 @@
 
 status_t editFile()
 {
+	char* buf = NULL;
 	int iText = 0;//перед каким индексом стоит курсор
 	int iEdit = 0;
-	char* buf = NULL;
 	if (cur->data)
 	{
-		while (cur->data[iText])//копирование текстового файла в буфер
+		buf = (char*)calloc(strlen(cur->data) + 1, sizeof(char));
+		if (!buf)
 		{
-			char* values = (char*)realloc(buf, iText + 10);
-			if (!values)
-			{
-				printf("ERROR: memory allocation problem.\n");
-				return FAIL;
-			}
-			buf = values;
-			if (iText == 0)
-				strncpy(buf, cur->data[iText], 9);
-			else
-				strncat(buf, cur->data[iText], 9);
-			iText += 9;
-			buf[iText] = '\0';
+			printf("ERROR: memory allocation problem.\n");
+			return FAIL;
 		}
+		strcpy(buf, cur->data);
+		iText = strlen(cur->data);
 	}
-	
 
 	int curLen = iText;
+	system("cls");
+	for (iEdit = 0; iEdit < curLen; iEdit++)
+		printf("%c", buf[iEdit]);
+	printf("\n");
+	printf("The cursor is before a symbol with index %i\n", iText);
 	char code = '0';
     do
 	{

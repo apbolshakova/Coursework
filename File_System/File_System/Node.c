@@ -111,29 +111,6 @@ status_t renameNode()
 	
 	char* changingName =NULL;
 	changingName = getFileName();
-	/*if (!changingName)
-	{
-		printf("ERROR: memory allocation problem.\n");
-		return FAIL;
-	}
-	int iChangingName = 0;
-	*printf("Please enter which new name you want to give this item:\n");
-	while (!strchr(NAME_MASK, changingName[iChangingName]))
-	{
-		if (iChangingName < LEN_NAME)
-		{
-			scanf_s("%c", changingName[iChangingName]);
-			iChangingName++;
-		}
-		else
-		{
-			changingName = realloc(changingName, iChangingName + 2);
-			scanf_s("%c", changingName[iChangingName]);
-			iChangingName++;
-			changingName[iChangingName] = '\0';
-		}
-	}
-	*/
 	cur->child[childID]->name = changingName;
 	return SUCCESS;
 }

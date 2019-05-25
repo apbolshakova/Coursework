@@ -40,6 +40,7 @@ status_t createNode(); //TODO for Sasha
 void deleteChildrenRecur(node_t* curRecur);
 status_t deleteNode(); //TODO for Sasha
 int getChildID();
+int getChildIDforDeleting();
 status_t renameNode(); //TODO for Sasha
 status_t openNode();
 status_t closeNode();
