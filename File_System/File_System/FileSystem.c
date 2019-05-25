@@ -176,26 +176,18 @@ status_t flushFS(const char *fileName)
 		printf("ERROR: unable to open file.\n");
 		return FAIL;
 	}
-	if (printNodes(root, file) == FAIL)
-	{
-		printf("ERROR unable to save data in file.\n");
-		return FAIL;
-	}
+	printNodes(root, file);
 	fclose(file);
 	return SUCCESS;
 }
 
-status_t printNodes(node_t* node, FILE* file)
+void printNodes(node_t* node, FILE* file)
 {
 	if (!node) return FAIL;
 	fprintf(file, "%s %i ", node->name, node->childrenNum);
 	if (node->type == 'T') fprintText(node->data, file);
 	fprintf(file, "\n");
-	for (int i = 0; i < node->childrenNum; i++)
-	{
-		return printNodes(node->child[i], file);
-	}
-	return SUCCESS;
+	for (int i = 0; i < node->childrenNum; i++) printNodes(node->child[i], file);
 }
 
 void fprintText(char* text, FILE* file)
@@ -206,7 +198,6 @@ void fprintText(char* text, FILE* file)
 		fprintf(file, "%c", *text);
 		text++;
 	}
-	printf("\n");
 }
 
 char* getFileName()
