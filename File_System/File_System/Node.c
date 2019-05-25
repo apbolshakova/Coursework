@@ -51,16 +51,16 @@ void deleteChildrenRecur(node_t* curRecur)
 			if (curRecur->child[iChild])//рекурсивное удаление детей curRecur
 				deleteChildrenRecur(curRecur->child[iChild]);
 		}
-		free(curRecur->name);
-		curRecur->name = NULL;
-		if (curRecur->data)
-		{
-			free(curRecur->data);
-			curRecur->data = NULL;
-		}
-		free(curRecur);
-		curRecur = NULL;
 	}
+	free(curRecur->name);
+	curRecur->name = NULL;
+	if (curRecur->data)
+	{
+		free(curRecur->data);
+		curRecur->data = NULL;
+	}
+	free(curRecur);
+	curRecur = NULL;
 	
 }
 
@@ -75,9 +75,9 @@ status_t deleteNode()
 	if (cur->child[childID])
 		deleteChildrenRecur(cur->child[childID]);
 	int iDelete = 0;
-	for (iDelete = childID; iDelete < cur->childrenNum; iDelete++)
+	for (iDelete = childID; iDelete < (cur->childrenNum-1); iDelete++)
 	{
-		cur->child[iDelete - 1] = cur->child[iDelete];
+		cur->child[iDelete] = cur->child[iDelete+1];
 	}
 	cur->child[cur->childrenNum] = '\0';
 	cur->childrenNum--;
