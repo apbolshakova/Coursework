@@ -49,26 +49,24 @@ void deleteChildrenRecur(node_t* curRecur)
 		for (iChild = 0; iChild < curRecur->childrenNum; iChild++)
 		{
 			if (curRecur->child[iChild])//рекурсивное удаление детей curRecur
-			{
 				deleteChildrenRecur(curRecur->child[iChild]);
-				free(cur->child[iChild]->name);
-				if  (cur->child[iChild]->data)
-				   free(cur->child[iChild]->data);
-				free(curRecur->child[iChild]);
-				curRecur->child[iChild] = NULL;
-			}
 		}
 		free(curRecur->name);
-		free(curRecur->data);
-		free(curRecur->child);
-		curRecur->child = NULL;
+		curRecur->name = NULL;
+		if (curRecur->data)
+		{
+			free(curRecur->data);
+			curRecur->data = NULL;
+		}
+		free(curRecur);
+		curRecur = NULL;
 	}
 	
 }
 
 status_t deleteNode()
 {
-	int childID = getChildID();
+	int childID = getChildIDforDeleting();
 	if (cur->childrenNum <= childID || childID < 0)
 	{
 		printf("ERROR: attempt to delete not existing file.\n");
@@ -76,7 +74,13 @@ status_t deleteNode()
 	}
 	if (cur->child[childID])
 		deleteChildrenRecur(cur->child[childID]);
-	
+	int iDelete = 0;
+	for (iDelete = childID; iDelete < cur->childrenNum; iDelete++)
+	{
+		cur->child[iDelete - 1] = cur->child[iDelete];
+	}
+	cur->child[cur->childrenNum] = '\0';
+	cur->childrenNum--;
 	return SUCCESS;
 }
 
@@ -84,6 +88,14 @@ int getChildID()
 {
 	int childID = 0;
 	printf("Print ID of file which you want to open: ");
+	scanf("%i", &childID);
+	return childID;
+}
+
+int getChildIDforDeleting()
+{
+	int childID = 0;
+	printf("Print ID of file which you want to delete: ");
 	scanf("%i", &childID);
 	return childID;
 }

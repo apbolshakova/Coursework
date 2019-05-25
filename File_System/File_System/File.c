@@ -4,7 +4,13 @@ status_t editFile()
 {
 	int iText = 0;//перед каким индексом стоит курсор
 	int iEdit = 0;
-	char* buf = (char*)calloc(LEN_TEXT, sizeof(char));
+	char* buf = NULL;
+	char* values=NULL;
+	if (!values)
+	{
+		printf("ERROR: memory allocation problem.\n");
+		return FAIL;
+	}
 	if (!buf)
 	{
 		printf("ERROR: memory allocation problem.\n");
