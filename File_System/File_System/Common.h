@@ -37,7 +37,7 @@ status_t deleteFS(); //TODO for Sasha
 
 /*Node.c*/
 status_t createNode(); //TODO for Sasha
-void deleteChildrenRecur(node_t* curRecur)
+void deleteChildrenRecur(node_t* curRecur);
 status_t deleteNode(); //TODO for Sasha
 int getChildID();
 status_t renameNode(); //TODO for Sasha
