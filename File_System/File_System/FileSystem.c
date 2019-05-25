@@ -216,7 +216,7 @@ char* getFileName()
 		printf("ERROR: memory allocation problem.\n");
 		return FAIL;
 	}
-	printf("Enter name of file:\n");
+	printf("Enter name of file up to 255 characters:\n");
 	scanf_s(LEN_CODE, fileName, LEN);
 	return fileName;
 }

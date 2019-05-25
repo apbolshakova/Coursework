@@ -11,11 +11,11 @@ status_t editFile()
 		return FAIL;
 	}
 	
-	while (cur->data[iText])//считывание текстового файла в буфер
+	while (cur->data[iText])//копирование текстового файла в буфер
 	{
 		if (iText < LEN_TEXT)
 		{
-			scanf_s("%c", buf[iText]);
+			scanf_s("%c", buf[iText]);//копировать
 			iText++;
 		}
 		else
@@ -75,7 +75,7 @@ status_t editFile()
 
 		system("cls");
 		for (iEdit = 0; iEdit < curLen; iEdit++)
-			printf(buf[iEdit]);
+			printf("%c", buf[iEdit]);
 		printf("The cursor is before a symbol with index %i", iText);
 	} while (code != CODE_SAVE);
 	return SUCCESS;

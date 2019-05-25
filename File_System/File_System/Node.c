@@ -13,8 +13,9 @@ status_t createNode()
 		enterType = _getch();
 	} while (!strchr(TYPE_MASK, enterType));
 	system("cls");
-	
-	int iNewName = 0;
+	char* newName = NULL;
+	newName = getFileName();
+	/*int iNewName = 0;
 	char* newName = NULL;
 	printf("Please enter name for new item:\n");
 	while (!strchr(NAME_MASK, newName[iNewName]))
@@ -30,7 +31,7 @@ status_t createNode()
 		iNewName++;
 		newName[iNewName] = '\0';
 		
-	}
+	}*/
 	system("cls");
 	node_t* newNode = (node_t*)malloc(sizeof(node_t));
 	if (!newNode)
@@ -46,7 +47,7 @@ status_t createNode()
 	newNode->data = NULL;
 
 	cur->childrenNum++;
-	valuesChildren = (node_t*)realloc(cur->child, sizeof(node_t)*cur->childrenNum);
+	node_t* valuesChildren = (node_t*)realloc(cur->child, sizeof(node_t)*cur->childrenNum);
 	if (!valuesChildren)
 	{
 		printf("ERROR: memory allocation problem.\n");
@@ -64,12 +65,21 @@ void deleteChildrenRecur(node_t* curRecur)
 	{
 		for (iChild = 0; iChild < curRecur->childrenNum; iChild++)
 		{
-			if (curRecur->child[iChild])
+			if (curRecur->child[iChild])//рекурсивное удаление детей curRecur
+			{
 				deleteChildrenRecur(curRecur->child[iChild]);
-			free(curRecur->child[iChild]);
+				free(cur->child[iChild]->name);
+				free(cur->child[iChild]->data);
+				free(curRecur->child[iChild]);
+				curRecur->child[iChild] = NULL;
+			}
 		}
+		free(curRecur->name);
+		free(curRecur->data);
+		free(curRecur->child);
+		curRecur->child = NULL;
 	}
-	free(curRecur->child);
+	
 }
 
 status_t deleteNode()
@@ -77,17 +87,12 @@ status_t deleteNode()
 	int childID = getChildID();
 	if (cur->childrenNum <= childID || childID < 0)
 	{
-		printf("ERROR: attempt to open not existing file.\n");
+		printf("ERROR: attempt to delete not existing file.\n");
 		return FAIL;
 	}
 	if (cur->child[childID])
 		deleteChildrenRecur(cur->child[childID]);
-	free(cur->child[childID]->name);
-	free(cur->child[childID]->type);
-	free(cur->child[childID]->parent);
-	free(cur->child[childID]->childrenNum);
-	free(cur->child[childID]->data);
-	cur->child[childID] = NULL;
+	
 	return SUCCESS;
 }
 
@@ -108,14 +113,15 @@ status_t renameNode()
 		return FAIL;
 	}
 	
-	char* changingName = (char*)calloc(LEN_NAME, sizeof(char));
-	if (!changingName)
+	char* changingName =NULL;
+	changingName = getFileName();
+	/*if (!changingName)
 	{
 		printf("ERROR: memory allocation problem.\n");
 		return FAIL;
 	}
 	int iChangingName = 0;
-	printf("Please enter which new name you want to give this item:\n");
+	*printf("Please enter which new name you want to give this item:\n");
 	while (!strchr(NAME_MASK, changingName[iChangingName]))
 	{
 		if (iChangingName < LEN_NAME)
@@ -131,7 +137,7 @@ status_t renameNode()
 			changingName[iChangingName] = '\0';
 		}
 	}
-
+	*/
 	cur->child[childID]->name = changingName;
 	return SUCCESS;
 }
