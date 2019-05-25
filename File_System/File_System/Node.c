@@ -15,23 +15,6 @@ status_t createNode()
 	system("cls");
 	char* newName = NULL;
 	newName = getFileName();
-	/*int iNewName = 0;
-	char* newName = NULL;
-	printf("Please enter name for new item:\n");
-	while (!strchr(NAME_MASK, newName[iNewName]))
-	{
-		char* values = (char*)realloc(newName, iNewName+2);
-		if (!values)
-		{
-			printf("ERROR: memory allocation problem.\n");
-			return FAIL;
-		}
-		newName = values;
-		scanf_s("%c", newName[iNewName], 1);
-		iNewName++;
-		newName[iNewName] = '\0';
-		
-	}*/
 	system("cls");
 	node_t* newNode = (node_t*)malloc(sizeof(node_t));
 	if (!newNode)
