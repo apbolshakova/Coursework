@@ -26,7 +26,7 @@ status_t editFile()
 	}
 	
 
-	int curLen = iText+1;
+	int curLen = iText;
 	char code = '0';
     do
 	{
@@ -42,12 +42,14 @@ status_t editFile()
 			}
 				
 			if (code == CODE_RIGHT)//смещение курсора вправо
-				iText++;
+				if (iText<curLen)
+				   iText++;
 			break;
 
 		case CODE_SAVE://сохранение и выход из edit
 			free(cur->data);
 			cur->data = buf;
+			printf("The file is successfuly saved.\n");
 			return SUCCESS;
 
 		case CODE_DELETE://удаление символа
@@ -63,8 +65,9 @@ status_t editFile()
 
 		default://вставка символа
 			curLen++;
-			buf = realloc(buf, curLen+1);
-			buf[curLen] = 0;
+			char* valuesAdd = (char*)realloc(buf, curLen+1);
+			buf = valuesAdd;
+			buf[curLen] = '\0';
 			for (iEdit = curLen - 1; iEdit > iText; iEdit--)
 				buf[iEdit] = buf[iEdit-1];
 			buf[iText] = code;
