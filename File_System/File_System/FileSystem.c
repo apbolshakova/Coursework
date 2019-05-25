@@ -200,6 +200,7 @@ status_t printNodes(node_t* node, FILE* file)
 
 void fprintText(char* text, FILE* file)
 {
+	if (text == NULL) return;
 	while (*text)
 	{
 		fprintf(file, "%c", *text);

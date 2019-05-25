@@ -94,9 +94,7 @@ status_t printContents()
 
 void printText(char* text)
 {
-	if (*text == NULL)
-		return;
-
+	if (text == NULL) return;
 	while (*text)
 	{
 		printf("%c", *text);
