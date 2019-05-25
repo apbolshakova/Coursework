@@ -13,29 +13,24 @@ status_t createNode()
 		enterType = _getch();
 	} while (!strchr(TYPE_MASK, enterType));
 	system("cls");
+	
 
-	char* newName = (char*)calloc(LEN_NAME, sizeof(char));
-	if (!newName)
-	{
-		printf("ERROR: memory allocation problem.\n");
-		return FAIL;
-	}
 	int iNewName = 0;
+	char* newName = NULL;
 	printf("Please enter name for new item:\n");
 	while (!strchr(NAME_MASK, newName[iNewName]))
 	{
-		if (iNewName < LEN_NAME)
+		char* values = (char*)realloc(newName, iNewName+2);
+		if (!values)
 		{
-			scanf_s("%c", newName[iNewName]);
-			iNewName++;
+			printf("ERROR: memory allocation problem.\n");
+			return FAIL;
 		}
-		else
-		{
-			newName = realloc(newName, iNewName+2);
-			scanf_s("%c", newName[iNewName], 1);
-			iNewName++;
-			newName[iNewName] = '\0';
-		}
+		newName = values;
+		scanf_s("%c", newName[iNewName], 1);
+		iNewName++;
+		newName[iNewName] = '\0';
+		
 	}
 	system("cls");
 	node_t* newNode = (node_t*)malloc(sizeof(node_t));
@@ -96,6 +91,14 @@ status_t deleteNode()
 	return SUCCESS;
 }
 
+int getChildID()
+{
+	int childID = 0;
+	printf("Print ID of file which you want to open: ");
+	scanf("%i", &childID);
+	return childID;
+}
+
 status_t renameNode()
 {
 	int childID = getChildID();
@@ -143,14 +146,6 @@ status_t openNode()
 	}
 	cur = cur->child[childID];
 	return SUCCESS;
-}
-
-int getChildID()
-{
-	int childID = 0;
-	printf("Print ID of file which you want to open: ");
-	scanf("%i", &childID);
-	return childID;
 }
 
 status_t closeNode()
