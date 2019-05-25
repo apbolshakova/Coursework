@@ -6,7 +6,6 @@
 #define FOLDER_MASK "fndroc\033"
 #define FILE_MASK "fec\033"
 #define TYPE_MASK "FT"
-#define NAME_MASK "\015"
 #define LEN 256
 #define LEN_CODE "%255s"
 #define LEN_NAME 50
