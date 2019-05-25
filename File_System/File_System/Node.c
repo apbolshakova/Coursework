@@ -52,7 +52,8 @@ void deleteChildrenRecur(node_t* curRecur)
 			{
 				deleteChildrenRecur(curRecur->child[iChild]);
 				free(cur->child[iChild]->name);
-				free(cur->child[iChild]->data);
+				if  (cur->child[iChild]->data)
+				   free(cur->child[iChild]->data);
 				free(curRecur->child[iChild]);
 				curRecur->child[iChild] = NULL;
 			}
