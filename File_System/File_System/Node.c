@@ -14,7 +14,6 @@ status_t createNode()
 	} while (!strchr(TYPE_MASK, enterType));
 	system("cls");
 	
-
 	int iNewName = 0;
 	char* newName = NULL;
 	printf("Please enter name for new item:\n");
@@ -47,12 +46,13 @@ status_t createNode()
 	newNode->data = NULL;
 
 	cur->childrenNum++;
-	cur->child = (node_t*)realloc(cur->child, sizeof(node_t)*cur->childrenNum);
-	if (!cur->child)
+	valuesChildren = (node_t*)realloc(cur->child, sizeof(node_t)*cur->childrenNum);
+	if (!valuesChildren)
 	{
 		printf("ERROR: memory allocation problem.\n");
 		return FAIL;
 	}
+	cur->child = valuesChildren;
 	cur->child[cur->childrenNum - 1] = newNode;
 	return SUCCESS;
 }
