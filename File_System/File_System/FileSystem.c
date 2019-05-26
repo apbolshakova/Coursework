@@ -77,7 +77,7 @@ status_t getNodes(node_t** node, node_t* parent, FILE* file)
 	*node = (node_t*)malloc(sizeof(node_t));
 	if (!*node)
 	{
-		deleteFS();
+		deleteFS(root);
 		printf("ERROR: memory allocation problem.\n");
 		return FAIL;
 	}
@@ -85,7 +85,7 @@ status_t getNodes(node_t** node, node_t* parent, FILE* file)
 	char* name = (char*)calloc(LEN, sizeof(char));
 	if (!name)
 	{
-		deleteFS();
+		deleteFS(root);
 		printf("ERROR: memory allocation problem.\n");
 		return FAIL;
 	}
@@ -95,7 +95,7 @@ status_t getNodes(node_t** node, node_t* parent, FILE* file)
 	fscanf_s(file, "%i", &childrenNum);
 	if (childrenNum == INVALID && getDataFromFile(&data, file) == FAIL)
 	{
-		deleteFS();
+		deleteFS(root);
 		printf("ERROR: unable to load data for text file.\n");
 		return FAIL;
 	}
@@ -120,7 +120,7 @@ status_t getNodes(node_t** node, node_t* parent, FILE* file)
 	{
 		if (getNodes(&((*node)->child[i]), *node, file) == FAIL)
 		{
-			deleteFS();
+			deleteFS(root);
 			return FAIL;
 		}
 	}
@@ -213,7 +213,19 @@ char* getFileName()
 	return fileName;
 }
 
-status_t deleteFS()
+void deleteFS(node_t* p)
 {
-	return SUCCESS;
+	if (!p) return;
+	for (int i = 0; i < p->childrenNum; i++) deleteFS(p->child[i]);
+	if (p->data)
+	{
+		free(p->data);
+		p->data = NULL;
+	}
+	if (p->name)
+	{
+		free(p->name);
+		p->name = NULL;
+	}
+	free(p);
 }

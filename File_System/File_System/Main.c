@@ -7,13 +7,13 @@ int main(void)
 	if (getFS() == FAIL)
 	{
 		printf("ERROR: unable to get file system.\n");
-		deleteFS();
+		deleteFS(root);
 		_getch();
 		return 0;
 	}
 	handleMainCycle();
 	handleFlushing();
-	deleteFS();
+	deleteFS(root);
 	return 0;
 }
 

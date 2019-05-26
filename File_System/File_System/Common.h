@@ -33,20 +33,20 @@ status_t flushFS(const char *fileName);
 void printNodes(node_t* node, FILE* file);
 void fprintText(char* text, FILE* file);
 char* getFileName();
-status_t deleteFS(); //TODO for Sasha
+void deleteFS(node_t* p);
 
 /*Node.c*/
-status_t createNode(); //TODO for Sasha
+status_t createNode();
 void deleteChildrenRecur(node_t* curRecur);
-status_t deleteNode(); //TODO for Sasha
+status_t deleteNode();
 int getChildID();
 int getChildIDforDeleting();
-status_t renameNode(); //TODO for Sasha
+status_t renameNode();
 status_t openNode();
 status_t closeNode();
 
 /*File.c*/
-status_t editFile(); //TODO for Sasha
+status_t editFile();
 
 /*Path.c*/
 status_t getPath(path_t** path);
