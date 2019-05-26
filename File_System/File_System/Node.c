@@ -5,7 +5,8 @@ status_t createNode()
 {
     create_type enterType = invalidTC;
 	fflush(stdin);
-	do {
+	do 
+    {
 		system("cls");
 		printf("Please enter which type of file you want to create:\n");
 		printf("F - create new folder\n");
@@ -48,7 +49,7 @@ void deleteChildrenRecur(node_t* curRecur)
 	{
 		for (iChild = 0; iChild < curRecur->childrenNum; iChild++)
 		{
-			if (curRecur->child[iChild])//рекурсивное удаление детей curRecur
+			if (curRecur->child[iChild])  //рекурсивное удаление детей curRecur
 				deleteChildrenRecur(curRecur->child[iChild]);
 		}
 	}
@@ -61,7 +62,6 @@ void deleteChildrenRecur(node_t* curRecur)
 	}
 	free(curRecur);
 	curRecur = NULL;
-	
 }
 
 status_t deleteNode()
@@ -111,29 +111,6 @@ status_t renameNode()
 	
 	char* changingName =NULL;
 	changingName = getFileName();
-	/*if (!changingName)
-	{
-		printf("ERROR: memory allocation problem.\n");
-		return FAIL;
-	}
-	int iChangingName = 0;
-	*printf("Please enter which new name you want to give this item:\n");
-	while (!strchr(NAME_MASK, changingName[iChangingName]))
-	{
-		if (iChangingName < LEN_NAME)
-		{
-			scanf_s("%c", changingName[iChangingName]);
-			iChangingName++;
-		}
-		else
-		{
-			changingName = realloc(changingName, iChangingName + 2);
-			scanf_s("%c", changingName[iChangingName]);
-			iChangingName++;
-			changingName[iChangingName] = '\0';
-		}
-	}
-	*/
 	cur->child[childID]->name = changingName;
 	return SUCCESS;
 }

@@ -2,12 +2,12 @@
 
 status_t editFile()
 {
-	int iText = 0;//перед каким индексом стоит курсор
+	int iText = 0; //перед каким индексом стоит курсор
 	int iEdit = 0;
 	char* buf = NULL;
 	if (cur->data)
 	{
-		while (cur->data[iText])//копирование текстового файла в буфер
+		while (cur->data[iText]) //копирование текстового файла в буфер
 		{
 			char* values = (char*)realloc(buf, iText + 10);
 			if (!values)
@@ -24,7 +24,6 @@ status_t editFile()
 			buf[iText] = '\0';
 		}
 	}
-	
 
 	int curLen = iText;
 	char code = '0';
@@ -33,39 +32,32 @@ status_t editFile()
 		code = _getch();
 		switch (code)
 		{
-		case CODE_ARROW:
+		case CODE_ARROW: //смещение курсора
 			code = _getch();
-			if (code == CODE_LEFT)//смещение курсора влево
-			{
-				if(iText>0)
-				   iText--;
-			}
-				
-			if (code == CODE_RIGHT)//смещение курсора вправо
-				if (iText<curLen)
-				   iText++;
+			if (code == CODE_LEFT && iText > 0) iText--;
+			if (code == CODE_RIGHT && iText < curLen) iText++;
 			break;
 
-		case CODE_SAVE://сохранение и выход из edit
+		case CODE_SAVE: //сохранение и выход из edit
 			free(cur->data);
 			cur->data = buf;
 			printf("The file is successfuly saved.\n");
 			return SUCCESS;
 
-		case CODE_DELETE://удаление символа
+		case CODE_DELETE: //удаление символа
 			if (iText > 0)
 			{
 				iText--;
 				for (iEdit = iText; iEdit < curLen - 1; iEdit++)
-				   buf[iEdit] = buf[iEdit + 1];
-				 curLen--;
-				 buf[curLen] = '\0';
+					buf[iEdit] = buf[iEdit + 1];
+				curLen--;
+				buf[curLen] = '\0';
 			}
 			break;
 
-		default://вставка символа
+		default: //вставка символа
 			curLen++;
-			char* valuesAdd = (char*)realloc(buf, curLen+1);
+			char* valuesAdd = (char*)realloc(buf, curLen + 1);
 			buf = valuesAdd;
 			buf[curLen] = '\0';
 			for (iEdit = curLen - 1; iEdit > iText; iEdit--)
@@ -76,8 +68,7 @@ status_t editFile()
 		}		
 
 		system("cls");
-		for (iEdit = 0; iEdit < curLen; iEdit++)
-			printf("%c", buf[iEdit]);
+		for (iEdit = 0; iEdit < curLen; iEdit++) printf("%c", buf[iEdit]);
 		printf("\n");
 		printf("The cursor is before a symbol with index %i\n", iText);
 	} while (code != CODE_SAVE);

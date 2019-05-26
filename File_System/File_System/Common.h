@@ -44,7 +44,6 @@ status_t renameNode(); //TODO for Sasha
 status_t openNode();
 status_t closeNode();
 
-
 /*File.c*/
 status_t editFile(); //TODO for Sasha
 
