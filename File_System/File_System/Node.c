@@ -26,7 +26,8 @@ status_t createNode()
 	newNode->name = newName;
 	newNode->type = enterType;
 	newNode->parent = cur;
-	newNode->childrenNum = 0;
+	if (newNode->type == 'F') newNode->childrenNum = 0;
+	else newNode->childrenNum = INVALID;
 	newNode->child = NULL;
 	newNode->data = NULL;
 
