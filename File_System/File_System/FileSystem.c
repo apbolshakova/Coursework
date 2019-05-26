@@ -28,7 +28,15 @@ status_t initFS()
 		printf("ERROR: memory allocation problem.\n");
 		return FAIL;
 	}
-	root->name = ROOT_NAME;
+	root->name = (char*)calloc(strlen(ROOT_NAME) + 1, sizeof(char));
+	if (!root->name)
+	{
+		free(root);
+		root = NULL;
+		printf("ERROR: memory allocation problem.\n");
+		return FAIL;
+	}
+	strcpy(root->name, ROOT_NAME);
 	root->type = 'F';
 	root->parent = NULL;
 	root->childrenNum = 0;
