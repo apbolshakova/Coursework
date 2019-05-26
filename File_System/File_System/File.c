@@ -29,17 +29,10 @@ status_t editFile()
 		code = _getch();
 		switch (code)
 		{
-		case CODE_ARROW:
+		case CODE_ARROW: //смещение курсора
 			code = _getch();
-			if (code == CODE_LEFT)//смещение курсора влево
-			{
-				if(iText>0)
-				   iText--;
-			}
-				
-			if (code == CODE_RIGHT)//смещение курсора вправо
-				if (iText<curLen)
-				   iText++;
+			if (code == CODE_LEFT && iText > 0) iText--;
+			if (code == CODE_RIGHT && iText < curLen) iText++;
 			break;
 
 		case CODE_SAVE://сохранение и выход из edit
