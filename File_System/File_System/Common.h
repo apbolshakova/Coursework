@@ -44,6 +44,8 @@ int getChildIDforDeleting();
 status_t renameNode();
 status_t openNode();
 status_t closeNode();
+void searchNode();
+void searchChildrenRecur(node_t* curRecur, char* searchName);
 
 /*File.c*/
 status_t editFile();
