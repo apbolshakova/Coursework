@@ -1,8 +1,9 @@
 #include "Common.h"
 
-status_t getPath(path_t** path)
+status_t getPath(path_t** path, node_t* file)
 {
 	node_t* node = cur;
+	if (file) node = file;
 	while (node)
 	{
 		if (pushIntoPath(path, node) == FAIL)

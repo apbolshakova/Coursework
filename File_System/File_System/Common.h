@@ -13,9 +13,9 @@ extern node_t* cur; //folder or file to work with
 
 /*Main.c*/
 void handleMainCycle();
-status_t printCurNode();
-status_t printDir();
-status_t printContents();
+status_t printNode(node_t* node);
+status_t printDir(node_t* node);
+status_t printContents(node_t* file);
 void printText(char* text);
 void printMainMenu();
 actionID_t getID();
@@ -49,7 +49,7 @@ status_t closeNode();
 status_t editFile();
 
 /*Path.c*/
-status_t getPath(path_t** path);
+status_t getPath(path_t** path, node_t* file);
 status_t pushIntoPath(path_t** root, node_t* node);
 status_t printPath(path_t* root);
 void deletePath(path_t** root);
