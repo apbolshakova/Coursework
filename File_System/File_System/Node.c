@@ -138,3 +138,36 @@ status_t closeNode()
 	cur = cur->parent;
 	return SUCCESS;
 }
+
+void searchChildrenRecur(node_t* curRecur, char* searchName)
+{
+	int iSearch = 0;
+	if (curRecur->child)
+	{
+		for (iSearch = 0; iSearch < curRecur->childrenNum; iSearch++)
+		{
+			if (curRecur->child[iSearch])  //рекурсивный поиск детей curRecur
+				searchChildrenRecur(curRecur->child[iChild]);
+		}
+	}
+	if (strcmp(curRecur->name, searchName) == 0)
+	{//вывод данных в консоль;
+	}
+	else
+		return;
+}
+
+void searchNode()
+{
+	int iSearch = 0;
+	char* searchName = NULL;
+	searchName = getFileName();
+	if (cur->child)
+	{
+		for (iSearch = 0; iSearch < cur->childrenNum; iSearch++)
+			searchChildrenRecur(cur->child[iSearch], searchName);
+	}
+	else
+		printf("The file or the folder with such name is not found.\n");
+	return SUCCESS;
+}
