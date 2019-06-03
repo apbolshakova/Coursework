@@ -162,7 +162,7 @@ void searchChildrenRecur(node_t* curRecur, char* searchName)
 		for (iSearch = 0; iSearch < curRecur->childrenNum; iSearch++)
 		{
 			if (curRecur->child[iSearch])  //рекурсивный поиск детей curRecur
-				searchChildrenRecur(curRecur->child[iSearch]);
+				searchChildrenRecur(curRecur->child[iSearch], searchName);
 		}
 	}
 	if (strcmp(curRecur->name, searchName) == 0)

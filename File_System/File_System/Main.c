@@ -147,7 +147,7 @@ actionID_t getID()
 status_t handleAction(actionID_t action)
 {
 	system("cls");
-	printCurNode();
+	printNode(cur);
 	switch (action)
 	{
 	case flushID: return handleFlushing(); break;
