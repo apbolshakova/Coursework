@@ -166,7 +166,8 @@ void searchChildrenRecur(node_t* curRecur, char* searchName)
 		}
 	}
 	if (strcmp(curRecur->name, searchName) == 0)
-	{//вывод данных в консоль;
+	{
+		printDir();
 	}
 	else
 		return;

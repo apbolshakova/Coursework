@@ -48,7 +48,7 @@ status_t printCurNode()
 {
 	if (printDir() == FAIL)
 	{
-		printf("ERROR: unable to print path to currect directory.\n");
+		printf("ERROR: unable to print path to current directory.\n");
 		return FAIL;
 	}
 	if (printContents() == FAIL)
