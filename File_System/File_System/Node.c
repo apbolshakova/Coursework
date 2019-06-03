@@ -144,20 +144,17 @@ status_t searchNode()
 	int iSearch = 0;
 	char* searchName = NULL;
 	searchName = getFileName();
-	int findingName = 0;
 	if (cur->child)
 	{
 		for (iSearch = 0; iSearch < cur->childrenNum; iSearch++)
-			searchChildrenRecur(cur->child[iSearch], searchName, &findingName);
-		if (findingName == 0)
-			printf("The file or the folder with such name is not found.\n");
+			searchChildrenRecur(cur->child[iSearch], searchName);
 	}
 	else
 		printf("The file or the folder with such name is not found.\n");
 	return SUCCESS;
 }
 
-void searchChildrenRecur(node_t* curRecur, char* searchName, int* findingName)
+void searchChildrenRecur(node_t* curRecur, char* searchName)
 {
 	int iSearch = 0;
 	if (curRecur->child)
@@ -165,29 +162,28 @@ void searchChildrenRecur(node_t* curRecur, char* searchName, int* findingName)
 		for (iSearch = 0; iSearch < curRecur->childrenNum; iSearch++)
 		{
 			if (curRecur->child[iSearch])  //рекурсивный поиск детей curRecur
-				searchChildrenRecur(curRecur->child[iSearch], searchName, &findingName);
+				searchChildrenRecur(curRecur->child[iSearch], searchName);
 		}
 	}
 	if (strcmp(curRecur->name, searchName) == 0)
 	{
-		findingName = 1;
-		printNodeInfo(curRecur);
+		printDir(curRecur);
+		int dataSize = 0;
+		infoNode(curRecur, &dataSize);
 	}
-	}
+}
 
-void printNodeInfo(node_t* curRecur)
+void infoNode(node_t* curRecur, int* dataSize)
 {
-	printDir(node_t* curRecur);
 	if (curRecur->type == 'T')
 	{
-		int dataSize = 0;
 		dataSize = strlen(curRecur->data);
 		printf("Size of data of this text file is %i symbols.\n", dataSize);
 	}
 	else if (curRecur->type == 'F')
 	{
-		int dataSize = 0;
 		dataSize = curRecur->childrenNum;
 		printf("Number of children of this folder is %i.\n", dataSize);
 	} 
 }
+

@@ -3,8 +3,8 @@
 #define ROOT_NAME "root"
 #define NEW_STRING '\n'
 #define FS_MASK "il"
-#define FOLDER_MASK "fndroc\033"
-#define FILE_MASK "fec\033"
+#define FOLDER_MASK "sfndroc\033"
+#define FILE_MASK "sfec\033"
 #define TYPE_MASK "FT"
 #define LEN 256
 #define LEN_CODE "%255s"
