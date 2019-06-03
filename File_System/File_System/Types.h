@@ -22,6 +22,7 @@ typedef enum ActionID_
 	openID = 'o',
 	closeID = 'c',
 	editID = 'e',
+	searchID = 's',
 	exitID = '\033'
 } actionID_t;
 

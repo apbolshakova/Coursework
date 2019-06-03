@@ -30,7 +30,7 @@ void handleMainCycle()
 			_getch();
 			break;
 		}
-		if (printCurNode() == FAIL)
+		if (printNode(cur) == FAIL)
 		{
 			printf("ERROR: file system data is corrupted.\n");
 			_getch();
@@ -44,14 +44,14 @@ void handleMainCycle()
 	} while (action != exitID);
 }
 
-status_t printCurNode()
+status_t printNode(node_t* node)
 {
-	if (printDir() == FAIL)
+	if (printDir(node) == FAIL)
 	{
 		printf("ERROR: unable to print path to current directory.\n");
 		return FAIL;
 	}
-	if (printContents() == FAIL)
+	if (printContents(node) == FAIL)
 	{
 		printf("ERROR: unable to print contents of the current directory.\n");
 		return FAIL;
@@ -59,10 +59,10 @@ status_t printCurNode()
 	return SUCCESS;
 }
 
-status_t printDir()
+status_t printDir(node_t* node)
 {
 	path_t* path = NULL;
-	if (getPath(&path) == FAIL)
+	if (getPath(&path, node) == FAIL)
 	{
 		deletePath(&path);
 		printf("ERROR: unable to get path.\n");
@@ -79,13 +79,15 @@ status_t printDir()
 	return SUCCESS;
 }
 
-status_t printContents()
+status_t printContents(node_t* file)
 {
-	if (cur->type == 'T') printText(cur->data);
-	for (int i = 0; i < cur->childrenNum; i++)
+	node_t* node = cur;
+	if (file) node = file;
+	if (node->type == 'T') printText(node->data);
+	for (int i = 0; i < node->childrenNum; i++)
 	{
-		printf("%i. %s", i, cur->child[i]->name);
-		if (cur->child[i]->type == 'T') printf(".txt");
+		printf("%i. %s", i, node->child[i]->name);
+		if (node->child[i]->type == 'T') printf(".txt");
 		printf("\n");
 	}
 	printf("\n");
@@ -116,6 +118,7 @@ void printMainMenu()
 		printf("n - create new file in this folder\n");
 		printf("d - delete file from this folder\n");
 		printf("r - rename file in this folder\n");
+		printf("s - search file in this folder\n");
 		printf("o - open file from this folder\n");
 
 	}
@@ -151,6 +154,7 @@ status_t handleAction(actionID_t action)
 	case createID: return createNode(); break;
 	case deleteID: return deleteNode(); break;
 	case renameID: return renameNode(); break;
+	case searchID: return searchNode(); break;
 	case openID: return openNode(); break;
 	case closeID: return closeNode(); break;
 	case editID: return editFile(); break;
