@@ -139,7 +139,7 @@ status_t closeNode()
 	return SUCCESS;
 }
 
-void searchNode()
+status_t searchNode()
 {
 	int iSearch = 0;
 	char* searchName = NULL;
@@ -167,9 +167,23 @@ void searchChildrenRecur(node_t* curRecur, char* searchName)
 	}
 	if (strcmp(curRecur->name, searchName) == 0)
 	{
-		printDir();
+		printDir(curRecur);
+		int dataSize = 0;
+		infoNode(curRecur, &dataSize);
 	}
-	else
-		return;
+}
+
+void infoNode(node_t* curRecur, int* dataSize)
+{
+	if (curRecur->type == 'T')
+	{
+		dataSize = strlen(curRecur->data);
+		printf("Size of data of this text file is %i symbols.\n", dataSize);
+	}
+	else if (curRecur->type == 'F')
+	{
+		dataSize = curRecur->childrenNum;
+		printf("Number of children of this folder is %i.\n", dataSize);
+	} 
 }
 
