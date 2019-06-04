@@ -45,7 +45,7 @@ status_t renameNode();
 status_t openNode();
 status_t closeNode();
 status_t searchNode();
-void searchChildrenRecur(node_t* curRecur, char* searchName, int* findingName);
+void searchChildrenRecur(node_t* curRecur, char* searchName, int* fileIsFound);
 void printNodeInfo(node_t* curRecur);
 
 /*File.c*/

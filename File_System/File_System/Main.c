@@ -51,6 +51,7 @@ status_t printNode(node_t* node)
 		printf("ERROR: unable to print path to current directory.\n");
 		return FAIL;
 	}
+	printf("\n");
 	if (printContents(node) == FAIL)
 	{
 		printf("ERROR: unable to print contents of the current directory.\n");
@@ -74,7 +75,6 @@ status_t printDir(node_t* node)
 		printf("ERROR: unable to print path.\n");
 		return FAIL;
 	}
-	printf("\n");
 	deletePath(&path);
 	return SUCCESS;
 }
