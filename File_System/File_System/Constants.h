@@ -1,4 +1,5 @@
-#ifndef INVALID
+#ifndef CONST_H
+#define CONST_H
 #define INVALID -1
 #define ROOT_NAME "root"
 #define NEW_STRING '\n'

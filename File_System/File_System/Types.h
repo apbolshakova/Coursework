@@ -1,5 +1,5 @@
-#ifndef TYPES
-#define TYPES
+#ifndef TYPES_H
+#define TYPES_H
 
 typedef enum Status_ { FAIL, SUCCESS } status_t;
 
